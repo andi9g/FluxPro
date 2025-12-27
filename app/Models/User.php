@@ -12,6 +12,21 @@ class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
+    protected $table = 'user';
+    protected $primaryKey = 'iduser';
+    protected $guarded = [];
+    protected $connection = 'mysql';
+    
+    //protected $fillable = ['name1','name2'];
+    
+    public function identitas()
+    {
+        return $this->hasOne(identitasM::class, 'iduser', 'iduser');
+    }
+    public function hakakases()
+    {
+        return $this->hasOne(hakakasesM::class, 'iduser', 'iduser');
+    }
 
     /**
      * The attributes that are mass assignable.

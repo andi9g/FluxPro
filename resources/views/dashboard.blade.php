@@ -1,112 +1,48 @@
 <x-layouts.app :title="__('Dashboard')">
-    <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
-        <div class="grid auto-rows-min gap-4 md:grid-cols-3">
-            <div class="relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
-            <div class="absolute inset-0 p-6 bg-white dark:bg-zinc-800 flex flex-col gap-3">
-            <flux:date-picker mode="range" max-range="10" />
-            <flux:dropdown hover position="bottom" align="start" offset="-16" gap="10">
-    <button type="button" class="flex items-center gap-3">
-        <flux:avatar size="sm" name="Caleb Porzio" src="https://unavatar.io/x/calebporzio" />
-
-        <flux:heading>Caleb Porzio</flux:heading>
-    </button>
-
-    <flux:popover class="flex flex-col gap-3 rounded-xl shadow-xl">
-        <flux:avatar size="xl" name="Caleb Porzio" src="https://unavatar.io/x/calebporzio" />
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div>
+            <h1 class="mb-2 text-4xl font-bold text-heading md:text-4xl">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">{{ __("Dashboard") }}</span>
+            </h1>
+            <flux:breadcrumbs>
+                <flux:breadcrumbs.item href="{{ url('/dashboard', []) }}" icon="home">Home</flux:breadcrumbs.item>
+                <flux:breadcrumbs.item>Dashboard</flux:breadcrumbs.item>
+            </flux:breadcrumbs>
+        </div>
 
         <div>
-            <flux:heading size="lg">Caleb Porzio</flux:heading>
-
-            <div class="flex items-center gap-2">
-                <flux:text size="lg">@calebporzio</flux:text>
-                <flux:badge>Follows you</flux:badge>
-            </div>
+           <flux:input icon="magnifying-glass" placeholder="Search orders" />
         </div>
+        
+    </div>
 
-        <div class="flex items-center gap-4">
-            <flux:text class="flex gap-1"><flux:heading>775</flux:heading> following</flux:text>
-            <flux:text class="flex gap-1"><flux:heading>50.2k</flux:heading> followers</flux:text>
-        </div>
+    <flux:separator variant="subtle" class="my-4"/>
 
-        <div class="flex gap-2">
-            <flux:button variant="outline" size="sm" icon="check" icon:class="opacity-75" class="flex-1">Following</flux:button>
-            <flux:button variant="primary" size="sm" icon="chat-bubble-left-right" icon:class="opacity-75" class="flex-1">Message</flux:button>
-        </div>
-    </flux:popover>
-</flux:dropdown>
-<flux:dropdown>
-    <flux:button icon="chat-bubble-oval-left" icon:variant="micro" icon:class="text-zinc-300">
-        Feedback
-    </flux:button>
+    
+    <flux:button variant='primary' size='sm' color='zinc'>Zinc</flux:button>
+    <flux:button variant='primary' size='sm' color='red'>Red</flux:button>
+    <flux:button variant='primary' size='sm' color='green'>Green</flux:button>
+    <flux:button variant='primary' size='sm' color='yellow'>Yellow</flux:button>
+    <flux:button variant='primary' size='sm' color='sky'>Sky</flux:button>
+    <flux:button variant='primary' size='sm' color='blue'>Blue</flux:button>
+    <flux:button variant='primary' size='sm' color='rose'>Rose</flux:button>
 
-    <flux:popover class="min-w-[30rem] flex flex-col gap-4">
-        <flux:radio.group variant="buttons" class="*:flex-1">
-            <flux:radio icon="bug-ant" checked>Bug report</flux:radio>
-            <flux:radio icon="light-bulb">Suggestion</flux:radio>
-            <flux:radio icon="question-mark-circle">Question</flux:radio>
-        </flux:radio.group>
-
-        <div class="relative">
-            <flux:textarea
-                rows="8"
-                class="dark:bg-transparent!"
-                placeholder="Please include reproduction steps. You may attach images or video files."
-            />
-
-            <div class="absolute bottom-3 left-3 flex items-center gap-2">
-                <flux:button variant="filled" size="xs" icon="face-smile" icon:variant="outline" icon:class="text-zinc-400 dark:text-zinc-300" />
-                <flux:button variant="filled" size="xs" icon="paper-clip" icon:class="text-zinc-400 dark:text-zinc-300" />
-            </div>
-        </div>
-
-        <div class="flex gap-2 justify-end">
-            <flux:button variant="filled" size="sm" kbd="esc" class="w-28">Cancel</flux:button>
-            <flux:button size="sm" kbd="⏎" class="w-28">Submit</flux:button>
-        </div>
-    </flux:popover>
-</flux:dropdown>
-            </div>
-            </div>
-            <div class="relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
-            <div class="absolute inset-0 p-6 bg-white dark:bg-zinc-800">
-            <flux:checkbox.group wire:model="categories" label="Categories" variant="pills">
-    <flux:checkbox value="fantasy" label="Fantasy" />
-    <flux:checkbox value="science-fiction" label="Science fiction" />
-    <flux:checkbox value="horror" label="Horror" />
-    <flux:checkbox value="mystery" label="Mystery" />
-    <flux:checkbox value="romance" label="Romance" />
-    <flux:checkbox value="autobiography" label="Autobiography" />
-    <flux:checkbox value="thriller" label="Thriller" />
-    <flux:checkbox value="poetry" label="Poetry" />
-    <flux:checkbox value="children" label="Children" />
-</flux:checkbox.group>
-                </div>
-            </div>
-            <div class="relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
-                <x-placeholder-pattern class="absolute inset-0 size-full stroke-gray-900/20 dark:stroke-neutral-100/20" />
-            </div>
-        </div>
-        <div class="relative h-full flex-1 overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
-            <div class="absolute inset-0 p-6 bg-white dark:bg-zinc-800 flex flex-col gap-3">
-            <flux:checkbox.group wire:model="subscription" label="Subscription preferences" variant="cards" class="max-sm:flex-col">
-    <flux:checkbox checked
-        value="newsletter"
-        label="Newsletter"
-        description="Get the latest updates and offers."
-    />
-    <flux:checkbox
-        value="updates"
-        label="Product updates"
-        description="Learn about new features and products."
-    />
-    <flux:checkbox
-        value="invitations"
-        label="Event invitations"
-        description="Invitatations to exclusive events."
-    />
-</flux:checkbox.group>
-<flux:editor class="**:data-[slot=content]:min-h-[100px]!" />
-            </div>
-            </div>
-        </div>
+    <flux:table>
+        <flux:table.columns >
+            <flux:table.column>Customer</flux:table.column>
+            <flux:table.column>Date</flux:table.column>
+            <flux:table.column>Date</flux:table.column>
+            <flux:table.column>Status</flux:table.column>
+            <flux:table.column>Amount</flux:table.column>
+        </flux:table.columns>
+    
+        <flux:table.rows>
+            <flux:table.row>
+                <flux:table.cell>Lindsey Aminoff</flux:table.cell>
+                <flux:table.cell>Jul 29, 10:45 AM</flux:table.cell>
+                <flux:table.cell><flux:badge color='green' size='sm' inset='top bottom'>Paid</flux:badge></flux:table.cell>
+                <flux:table.cell variant='strong'>$49.00</flux:table.cell>
+            </flux:table.row>
+        </flux:table.rows>
+    </flux:table>
 </x-layouts.app>
