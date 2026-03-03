@@ -2,14 +2,17 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\GoogleController;
+use App\Http\Controllers\informasipengantinC;
+use App\Http\Controllers\showC;
 use Livewire\Volt\Volt;
 
 
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
+Route::get('mengundang/{kode}/{kodepenerima}', [showC::class, "index"])->name('undanganku');
 
-Route::view('dashboard', 'dashboard')
+Route::view('dashboard', 'pages.dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
@@ -25,7 +28,9 @@ Route::middleware(['auth'])->group(function () {
     Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
     
     // Routes baru menggunakan Volt
-    Volt::route('table', 'table-demo')->name('table');
+    route::get('undangan', [informasipengantinC::class, 'index'])->name('undangan');
+    route::get('undangan/{idundangan}/detail', [informasipengantinC::class, 'informasipengantin'])->name('detail-undangan');
+    route::get('undangan/{idundangan}/sebar', [informasipengantinC::class, 'sebar'])->name('sebar-undangan');
     Volt::route('qa', 'qa-demo')->name('qa');
     Volt::route('auth-demo', 'auth-demo')->name('auth-demo');
 });
